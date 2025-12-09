@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: internship-api
+  template:
+    metadata:
+      labels:
+        app: internship-api
+    spec:
+      containers:
+        - name: internship-api
+          image: internship-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ENV
+              value: "production"
+
